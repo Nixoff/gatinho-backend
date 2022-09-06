@@ -12,4 +12,7 @@ module.exports = app => {
         
     app.route('/user/exists/:userName')
         .get(wrapAsync(userAPI.checkUserNameTaken));
+
+    app.route('/user/exists/email/:email')
+        .get(wrapAsync(userAPI.checkUserEmailTaken));
 };

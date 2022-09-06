@@ -26,6 +26,24 @@ class UserDao {
         ));
     }
 
+    findByEmail(email) {
+
+        return new Promise((resolve, reject) => this._db.get(
+            `SELECT * FROM user WHERE user_email = ?`,
+            [email],
+            (err, row) => {
+                if (err) {
+                    console.log(err);
+                    return reject('Can`t find email');
+                }
+                 
+                if(row) resolve(userConverter(row));
+                resolve(null);
+            }
+        ));
+        
+    }
+
     findByName(userName) {
 
         return new Promise((resolve, reject) => this._db.get(
